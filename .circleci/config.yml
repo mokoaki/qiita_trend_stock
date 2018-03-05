@@ -6,8 +6,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: test test
-          command: ruby test.rb
+          name: bundle install
+          command: bundle check || bundle install
+      - run:
+          name: qiita trend stock
+          command: ruby qiita_trend_stock.rb
 
 workflows:
   version: 2
@@ -17,7 +20,7 @@ workflows:
   scheduled-workflow:
     triggers:
       - schedule:
-          cron: "0 1 * * *"
+          cron: "0 0,6,12,18 * * *"
           filters:
             branches:
               only: master
