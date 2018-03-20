@@ -1,0 +1,7 @@
+# コメントは日本語でもよか
+Style/AsciiComments:
+  Enabled: false
+
+# 文字列による配列は%記法じゃなくてもよか
+Style/WordArray:
+  Enabled: false

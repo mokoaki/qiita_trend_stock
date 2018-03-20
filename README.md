@@ -2,7 +2,7 @@ memo
 
 ```sh
 $ bundle install --path vendor/bundle
-$ bundle install --path vendor/bundle --without development test
+$ bundle install --path vendor/bundle --without development
 ```
 
 ```sh

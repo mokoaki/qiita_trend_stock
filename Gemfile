@@ -4,6 +4,6 @@ source 'https://rubygems.org'
 
 gem 'qiita'
 
-group :test, :development do
+group :development do
   gem 'rspec'
 end
