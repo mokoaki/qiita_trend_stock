@@ -1,6 +1,6 @@
 version: 2.0
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/ruby:2.5.0
     steps:
@@ -9,6 +9,17 @@ jobs:
           name: bundle install
           command: bundle check || bundle install
       - run:
+          name: test qiita trend stock
+          command: bundle exec rspec spec
+  build:
+    docker:
+      - image: circleci/ruby:2.5.0
+    steps:
+      - checkout
+      - run:
+          name: bundle install
+          command: bundle check || bundle install --without development test
+      - run:
           name: qiita trend stock
           command: ruby qiita_trend_stock.rb
 
@@ -16,7 +27,7 @@ workflows:
   version: 2
   commit-workflow:
     jobs:
-      - build
+      - test
   scheduled-workflow:
     jobs:
       - build
