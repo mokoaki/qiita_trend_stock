@@ -5,17 +5,25 @@ jobs:
       - image: circleci/ruby:2.5.0
     steps:
       - checkout
+      - restore_cache:
+          key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}-source-v1
       - run:
           name: bundle install
-          command: bundle check || bundle install
+          command: bundle check || bundle install --path vendor/bundle
+      - save_cache:
+          key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}-source-v1
+          paths:
+            - vendor/bundle
       - run:
           name: test qiita trend stock
-          command: bundle exec rspec spec
+          command: bundle exec rspec
   build:
     docker:
       - image: circleci/ruby:2.5.0
     steps:
       - checkout
+      - restore_cache:
+          key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}-source-v1
       - run:
           name: bundle install
           command: bundle check || bundle install --without development
