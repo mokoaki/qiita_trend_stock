@@ -27,28 +27,10 @@ module QiitaTrendStock
 
       it '@itemsにItemインスタンスが配列で入る' do
         items = new_trend_items.items
-        item1 = items[0]
-        item2 = items[1]
 
-        expect(item1.uuid).to eq('aaaa')
-        expect(item2.uuid).to eq('dddd')
-      end
-    end
-
-    context '#uuids' do
-      before do
-        new_trend_items.instance_variable_set(:@items, items)
-      end
-
-      let(:items) do
-        [
-          double(:item, uuid: 'aaaa'),
-          double(:item, uuid: 'bbbb')
-        ]
-      end
-
-      it '@itemsに入っているItemインスタンスのuuidメソッドの結果の配列を返す' do
-        expect(new_trend_items.uuids).to match(['aaaa', 'bbbb'])
+        expect(items.size).to eq(2)
+        expect(items[0].uuid).to eq('aaaa')
+        expect(items[1].uuid).to eq('dddd')
       end
     end
 

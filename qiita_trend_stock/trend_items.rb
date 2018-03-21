@@ -4,8 +4,8 @@ require 'open-uri'
 
 module QiitaTrendStock
   # Qiitaトレンド入りしているアイテムを取ってくる・保持するクラス
-  class TrendItems
-    attr_reader :items
+  class TrendItems < Items
+    undef :uuids
 
     def fetch(qiita_trend_uri)
       trend_item_json  = qiita_trend_item_json(qiita_trend_uri)
@@ -28,8 +28,8 @@ module QiitaTrendStock
       trend_items.map { |item| item.dig('article', 'uuid').presence }.compact
     end
 
-    def self_items(uuids)
-      uuids.map { |uuid| Item.new(uuid: uuid) }
+    def self_items(trend_item_uuids)
+      trend_item_uuids.map { |uuid| Item.new(uuid: uuid) }
     end
   end
 end

@@ -25,11 +25,10 @@ module QiitaTrendStock
 
       it '@itemsにItemインスタンスが配列で入る' do
         items = trend_items.items
-        item1 = items[0]
-        item2 = items[1]
 
-        expect(item1.uuid).to eq('aaaa')
-        expect(item2.uuid).to eq('dddd')
+        expect(items.size).to eq(2)
+        expect(items[0].uuid).to eq('aaaa')
+        expect(items[1].uuid).to eq('dddd')
       end
     end
   end

@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 module QiitaTrendStock
-  class NewStockedItems
-    def initialize
-      @items = []
-    end
+  # ストックしたアイテム達を管理、保存するクラス
+  class NewStockedItems < Items
+    undef :items
+    undef :uuids
 
     def concat(items_object)
       @items.concat(items_object.items)
     end
 
-    def delete_old_items(limit)
+    def delete_old_items!(limit)
       @items.keep_if do |item|
         item.time > limit
       end

@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 module QiitaTrendStock
+  # 全てのQiitaのエントリはこのクラスで表すことにする
+  # uuid: 記事のID
+  # time: とりえあずストックした時間
   class Item
     attr_reader :uuid, :time
 

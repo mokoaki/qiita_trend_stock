@@ -8,6 +8,7 @@ require 'qiita'
 Time.zone = 'Asia/Tokyo'
 
 require_relative 'item'
+require_relative 'items'
 require_relative 'trend_items'
 require_relative 'stocked_items'
 require_relative 'new_trend_items'
@@ -32,7 +33,7 @@ module QiitaTrendStock
         new_stocked_items = NewStockedItems.new
         new_stocked_items.concat(new_trend_items)
         new_stocked_items.concat(stocked_items)
-        new_stocked_items.delete_old_items(1.month.ago)
+        new_stocked_items.delete_old_items!(1.month.ago)
         new_stocked_items.store_stocked_uuids!(qiita_client, stocked_item_uuid)
 
         output_log(qiita_client, new_trend_items)

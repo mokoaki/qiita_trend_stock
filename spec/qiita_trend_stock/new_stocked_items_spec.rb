@@ -6,12 +6,6 @@ module QiitaTrendStock
   describe NewStockedItems do
     let(:new_stocked_items) { NewStockedItems.new }
 
-    context '#initialize' do
-      it 'コンストラクタは@itemsインスタンス変数を初期化するだけ' do
-        expect(new_stocked_items.instance_variable_get(:@items)).to match([])
-      end
-    end
-
     context '#concat' do
       before do
         new_stocked_items.concat(dummy_items)
@@ -20,14 +14,15 @@ module QiitaTrendStock
       let(:dummy_items) { double(:dummy_items, items: ['aaaa', 'bbbb']) }
 
       it '@itemsは配列で初期化されており、itemsメソッドの返り値をconcatする' do
-        expect(new_stocked_items.instance_variable_get(:@items)).to match(['aaaa', 'bbbb'])
+        items = new_stocked_items.instance_variable_get(:@items)
+        expect(items).to match(['aaaa', 'bbbb'])
       end
     end
 
-    context '#delete_old_items' do
+    context '#delete_old_items!' do
       before do
         new_stocked_items.instance_variable_set(:@items, dummy_items)
-        new_stocked_items.delete_old_items(Time.zone.parse('2018/01/15'))
+        new_stocked_items.delete_old_items!(Time.zone.parse('2018/01/15'))
       end
 
       let(:dummy_items) do
@@ -41,11 +36,10 @@ module QiitaTrendStock
 
       it '@itemsから、指定した日付以前のものは削除しちゃう' do
         items = new_stocked_items.instance_variable_get(:@items)
-        item1 = items[0]
-        item2 = items[1]
 
-        expect(item1.uuid).to eq('cccc')
-        expect(item2.uuid).to eq('dddd')
+        expect(items.size).to eq(2)
+        expect(items[0].uuid).to eq('cccc')
+        expect(items[1].uuid).to eq('dddd')
       end
     end
 
@@ -69,8 +63,8 @@ module QiitaTrendStock
       let(:expect_json) do
         [
           %([),
-            %({"uuid":"aaaa","time":"2018-01-14T00:00:00.000+09:00"},),
-            %({"uuid":"bbbb","time":"2018-01-15T00:00:00.000+09:00"}),
+          %({"uuid":"aaaa","time":"2018-01-14T00:00:00.000+09:00"},),
+          %({"uuid":"bbbb","time":"2018-01-15T00:00:00.000+09:00"}),
           %(])
         ].join("\n")
       end
