@@ -17,5 +17,5 @@ test
 
 ```sh
 $ bundle install --path vendor/bundle
-$ bundle exec rspec spec
+$ bundle exec rspec
 ```
