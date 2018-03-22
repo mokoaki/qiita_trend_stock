@@ -26,7 +26,7 @@ jobs:
           key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}-source-v1
       - run:
           name: bundle install
-          command: bundle check || bundle install --without development
+          command: bundle check || bundle install --path vendor/bundle --without development
       - run:
           name: qiita trend stock
           command: ruby qiita_trend_stock.rb

@@ -5,7 +5,7 @@ memo
 circleci(cli): https://circleci.com/docs/2.0/local-cli/
 
 ```sh
-$ circleci update && circleci build --env qiita_access_token=1234567890abcdef --env stocked_item_uuid=61325fefd39377da0657
+$ circleci update && circleci build --env QIITA_ACCESS_TOKEN=1234567890abcdef --env STOCKED_ITEM_UUID=61325fefd39377da0657
 ```
 
 ```sh

@@ -7,25 +7,32 @@ module QiitaTrendStock
   class TrendItems < Items
     undef :uuids
 
-    def fetch(qiita_trend_uri)
-      trend_item_json  = qiita_trend_item_json(qiita_trend_uri)
-      trend_items      = qiita_trend_items(trend_item_json)
-      trend_item_uuids = qiita_trend_item_uuids(trend_items)
+    def fetch(qiita_client)
+      trend_item_uuids = qiita_trend_item_uuids(qiita_client)
       @items           = self_items(trend_item_uuids)
     end
 
     private
 
-    def qiita_trend_item_json(qiita_trend_uri)
-      Kernel.open(qiita_trend_uri).read
+    def qiita_trend_item_uuids(qiita_client)
+      first_items = qiita_list_item(qiita_client, 1)
+
+      match_last_page = first_items.last_page_url.match(/page=(\d+)/)[1].to_i
+
+      results = first_items.body.map { |item| item['id'] }
+
+      (2..match_last_page).each do |page|
+        items = qiita_list_item(qiita_client, page)
+        results.concat(items.body.map { |item| item['id'] })
+      end
+
+      results.map(&:presence).compact.uniq
     end
 
-    def qiita_trend_items(trend_item_json)
-      JSON.parse(trend_item_json)['trendItems']
-    end
-
-    def qiita_trend_item_uuids(trend_items)
-      trend_items.map { |item| item.dig('article', 'uuid').presence }.compact
+    def qiita_list_item(qiita_client, page)
+      limit_date = 7.days.ago.strftime('%F')
+      query      = "stocks:>20 created:>#{limit_date}"
+      qiita_client.list_items(page: page, per_page: 100, query: query)
     end
 
     def self_items(trend_item_uuids)

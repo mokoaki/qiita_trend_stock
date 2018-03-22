@@ -17,11 +17,11 @@ require_relative 'new_stocked_items'
 module QiitaTrendStock
   module Main
     class << self
-      def start(qiita_trend_uri:, qiita_access_token:, stocked_item_uuid:)
-        trend_items = TrendItems.new
-        trend_items.fetch(qiita_trend_uri)
+      def start(stocked_item_uuid:)
+        qiita_client = Qiita::Client.new
 
-        qiita_client = ::Qiita::Client.new(access_token: qiita_access_token)
+        trend_items = TrendItems.new
+        trend_items.fetch(qiita_client)
 
         stocked_items = StockedItems.new
         stocked_items.fetch(qiita_client, stocked_item_uuid)
