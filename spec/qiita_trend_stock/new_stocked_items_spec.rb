@@ -34,7 +34,7 @@ module QiitaTrendStock
         ]
       end
 
-      it '@itemsから、指定した日付以前のものは削除しちゃう' do
+      it '@itemsから、指定した日付より前のものは削除しちゃう' do
         items = new_stocked_items.instance_variable_get(:@items)
 
         expect(items.size).to eq(2)

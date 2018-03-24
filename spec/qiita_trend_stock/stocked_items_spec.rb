@@ -20,7 +20,7 @@ module QiitaTrendStock
         ].to_json
       end
 
-      it '@itemsにItemインスタンスが配列で入る' do
+      it '@itemsに#uuid,#timeメソッドを持つオブジェクトが配列で入る' do
         items = stocked_items.items
 
         expect(items.size).to eq(2)

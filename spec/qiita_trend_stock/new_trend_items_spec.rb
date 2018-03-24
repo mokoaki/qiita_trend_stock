@@ -25,7 +25,7 @@ module QiitaTrendStock
         )
       end
 
-      it '@itemsにItemインスタンスが配列で入る' do
+      it '@itemsに#uuidメソッドを持つオブジェクトが配列で入る' do
         items = new_trend_items.items
 
         expect(items.size).to eq(2)
