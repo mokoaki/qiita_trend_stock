@@ -21,7 +21,12 @@ module QiitaTrendStock
       qiita_client = Qiita::Client.new(access_token: qiita_access_token)
 
       trend_items = TrendItems.new
-      trend_items.fetch(qiita_client, stock_keep_deadline)
+      deadline_date = stock_keep_deadline.strftime('%F')
+      trend_items.fetch(qiita_client, "           stocks:>15 created:>#{deadline_date}")
+      trend_items.fetch(qiita_client, "tag:Git    stocks:>1  created:>#{deadline_date}")
+      trend_items.fetch(qiita_client, "tag:Rails  stocks:>1  created:>#{deadline_date}")
+      trend_items.fetch(qiita_client, "tag:GitHub stocks:>1  created:>#{deadline_date}")
+      trend_items.fetch(qiita_client, "tag:Ruby   stocks:>1  created:>#{deadline_date}")
 
       stocked_items = StockedItems.new
       stocked_items.fetch(qiita_client, stocked_item_uuid)

@@ -10,12 +10,11 @@ module QiitaTrendStock
   class TrendItems < Items
     undef :uuids
 
-    def fetch(qiita_client, stock_keep_deadline)
-      limit_date = stock_keep_deadline.strftime('%F')
-      query      = "stocks:>20 created:>#{limit_date}"
-
+    def fetch(qiita_client, query)
       trend_item_uuids = qiita_trend_item_uuids(qiita_client, query)
-      @items           = self_items(trend_item_uuids)
+      items            = self_items(trend_item_uuids)
+
+      @items.concat(items)
     end
 
     private
