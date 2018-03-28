@@ -37,6 +37,7 @@ module QiitaTrendStock
       trend_items.fetch(qiita_client, "tag:Rails  stocks:>1  created:>#{deadline_date}")
       trend_items.fetch(qiita_client, "tag:GitHub stocks:>1  created:>#{deadline_date}")
       trend_items.fetch(qiita_client, "tag:Ruby   stocks:>1  created:>#{deadline_date}")
+      trend_items.fetch(qiita_client, "tag:docker stocks:>1  created:>#{deadline_date}")
 
       trend_items
     end
