@@ -4,10 +4,10 @@ require 'spec_helper'
 
 module QiitaTrendStock
   describe Items do
-    let(:items) { Items.new }
+    let(:items) { Class.new { |klass| klass.include(Items) }.new }
 
     context '#initialize' do
-      it 'コンストラクタは@itemsインスタンス変数を初期化する' do
+      it 'コンストラクタは@itemsインスタンス変数を空配列で初期化する' do
         expect(items.instance_variable_get(:@items)).to be_empty
       end
     end

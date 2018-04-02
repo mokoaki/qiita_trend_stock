@@ -2,9 +2,9 @@
 
 module QiitaTrendStock
   # Items管理クラス達の共通処理だよ
-  class Items
+  module Items
     def initialize
-      @items = [] # TODO Arrayにdelegateしたい
+      @items = []
     end
 
     def uuids

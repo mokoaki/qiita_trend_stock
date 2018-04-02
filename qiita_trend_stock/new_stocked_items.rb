@@ -2,7 +2,9 @@
 
 module QiitaTrendStock
   # ストックしたアイテム達を管理、保存するクラス
-  class NewStockedItems < Items
+  class NewStockedItems
+    include Items
+
     undef :items
     undef :uuids
 
