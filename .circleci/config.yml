@@ -2,16 +2,16 @@ version: 2.0
 jobs:
   test:
     docker:
-      - image: circleci/ruby:2.5.0
+      - image: circleci/ruby:2.5.1
     steps:
       - checkout
       - restore_cache:
-          key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}-source-v1
+          key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}-v2
       - run:
           name: bundle install
           command: bundle check || bundle install --path vendor/bundle
       - save_cache:
-          key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}-source-v1
+          key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}-v2
           paths:
             - vendor/bundle
       - run:
@@ -19,11 +19,11 @@ jobs:
           command: bundle exec rspec
   build:
     docker:
-      - image: circleci/ruby:2.5.0
+      - image: circleci/ruby:2.5.1
     steps:
       - checkout
       - restore_cache:
-          key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}-source-v1
+          key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}-v2
       - run:
           name: bundle install
           command: bundle check || bundle install --path vendor/bundle --without development
