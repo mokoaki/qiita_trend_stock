@@ -29,7 +29,7 @@ jobs:
           command: bundle check || bundle install --path vendor/bundle --without development
       - run:
           name: qiita trend stock
-          command: ruby qiita_trend_stock.rb
+          command: bundle exec ruby qiita_trend_stock.rb
 
 workflows:
   version: 2
