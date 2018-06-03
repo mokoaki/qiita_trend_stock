@@ -7,10 +7,8 @@ module QiitaTrendStock
   # なんかアクセス出来なくなったので
   # API経由で取得しようとしたらいいね数でソートしたデータ受け取れねえし(´；ω；｀)
   # しょうがねえなと思いながらAPI検索を我慢して使う
-  class TrendItems
-    include Items
-
-    undef :uuids
+  class TrendItems < Items
+    include Behaviors::Items
 
     def fetch(qiita_client, query)
       trend_item_uuids = qiita_trend_item_uuids(qiita_client, query)

@@ -2,17 +2,25 @@
 
 module QiitaTrendStock
   # Items管理クラス達の共通処理だよ
-  module Items
+  class Items
     def initialize
       @items = []
     end
+  end
 
-    def uuids
-      @uuids ||= @items.map(&:uuid).map(&:presence).compact
+  module Behaviors
+    # Itemsを継承したクラスが必要としたりしなかったりする簡単な処理
+    module Uuids
+      def uuids
+        @uuids ||= @items.map(&:uuid).map(&:presence).compact
+      end
     end
 
-    def items
-      @items.uniq(&:uuid)
+    # Itemsを継承したクラスが必要としたりしなかったりする簡単な処理
+    module Items
+      def items
+        @items.uniq(&:uuid)
+      end
     end
   end
 end

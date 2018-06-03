@@ -2,8 +2,9 @@
 
 module QiitaTrendStock
   # 既にストックしたアイテムの一覧をQiitaに保存しているので、それを取ってくる
-  class StockedItems
-    include Items
+  class StockedItems < Items
+    include Behaviors::Uuids
+    include Behaviors::Items
 
     def fetch(qiita_client, stocked_item_uuid)
       stocked_item      = qiita_stocked_item(qiita_client, stocked_item_uuid)

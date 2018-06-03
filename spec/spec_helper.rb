@@ -18,6 +18,9 @@ require_relative '../qiita_trend_stock/main.rb'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  config.raise_on_warning = true # 警告をエラーにする
+  config.raise_errors_for_deprecations! # 非推奨警告をエラーに変換
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

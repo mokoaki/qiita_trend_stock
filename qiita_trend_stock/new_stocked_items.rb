@@ -2,12 +2,7 @@
 
 module QiitaTrendStock
   # ストックしたアイテム達を管理、保存するクラス
-  class NewStockedItems
-    include Items
-
-    undef :items
-    undef :uuids
-
+  class NewStockedItems < Items
     def concat(items_object)
       @items.concat(items_object.items)
     end

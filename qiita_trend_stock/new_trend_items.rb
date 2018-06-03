@@ -3,8 +3,9 @@
 module QiitaTrendStock
   # トレンドから取得してきたアイテム、既にストックしたアイテムから
   # 新規のアイテム一覧を保持・ストックするクラス
-  class NewTrendItems
-    include Items
+  class NewTrendItems < Items
+    include Behaviors::Uuids
+    include Behaviors::Items
 
     def find(trend_items, stocked_items)
       found_trend_items = trend_items.items
