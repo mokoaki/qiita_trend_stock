@@ -3,7 +3,7 @@ jobs:
   test:
     working_directory: ~/qiita_trend_stock
     docker:
-      - image: circleci/ruby:2.5.1
+      - image: circleci/ruby:2.5.3
     steps:
       - checkout
       - restore_cache:
@@ -21,7 +21,7 @@ jobs:
   build:
     working_directory: ~/qiita_trend_stock
     docker:
-      - image: circleci/ruby:2.5.1
+      - image: circleci/ruby:2.5.3
     steps:
       - checkout
       - restore_cache:
