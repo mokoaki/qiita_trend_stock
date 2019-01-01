@@ -3,14 +3,14 @@ jobs:
   test:
     working_directory: ~/qiita_trend_stock
     docker:
-      - image: circleci/ruby:2.5.3
+      - image: circleci/ruby:2.6.0
     steps:
       - checkout
       - restore_cache:
           key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}
       - run:
           name: bundle install
-          command: bundle install --path vendor/bundle
+          command: gem update --system ; bundle install --path vendor/bundle
       - save_cache:
           key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}
           paths:
@@ -21,14 +21,14 @@ jobs:
   build:
     working_directory: ~/qiita_trend_stock
     docker:
-      - image: circleci/ruby:2.5.3
+      - image: circleci/ruby:2.6.0
     steps:
       - checkout
       - restore_cache:
           key: gem-cache-{{ arch }}-{{ checksum "Gemfile.lock" }}
       - run:
           name: bundle install
-          command: bundle install --path vendor/bundle --without development
+          command: gem update --system ; bundle install --path vendor/bundle --without development
       - run:
           name: qiita trend stock
           command: bundle exec ruby qiita_trend_stock.rb
