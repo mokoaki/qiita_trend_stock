@@ -1,7 +1,31 @@
-# コメントは日本語でもよか
+AllCops:
+  TargetRubyVersion: 2.5
+
+# チェック対象外
+AllCops:
+  Exclude:
+    - vendor/**/*
+
+# コメントはASCII文字で記述 => disable
 Style/AsciiComments:
   Enabled: false
 
-# 文字列による配列は%記法じゃなくてもよか
+# ["a", "b", "c"] は %w表記にて記述 => disable
 Style/WordArray:
   Enabled: false
+
+# [:a, :b, :c] は %i表記にて記述 => disable
+Style/SymbolArray:
+  Enabled: false
+
+Style/Documentation:
+  Exclude:
+    - spec/**/*
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
+Metrics/LineLength:
+  Exclude:
+    - spec/**/*

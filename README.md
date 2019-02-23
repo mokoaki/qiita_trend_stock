@@ -5,12 +5,12 @@ memo
 circleci(cli): https://circleci.com/docs/2.0/local-cli/
 
 ```sh
-$ circleci update && circleci build --env STOCKED_ITEM_UUID=43b566faf2e8443ae413 --env QIITA_ACCESS_TOKEN=123456789abcdef
+$ circleci update && circleci build --env QIITA_ACCESS_TOKEN=test_token
 ```
 
 ```sh
-$ bundle install --path vendor/bundle --without development
-$ bundle exec ruby qiita_trend_stock.rb
+$ bundle install --path vendor/bundle
+$ bin/qiita_trend_stock
 ```
 
 test

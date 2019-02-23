@@ -2,8 +2,8 @@
 
 source 'https://rubygems.org'
 
-gem 'qiita'
+gem 'qiita', '1.3.5'
 
 group :development do
-  gem 'rspec'
+  gem 'rspec', '3.8.0'
 end

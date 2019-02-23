@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+Bundler.require(:default)
+require 'active_support'
+require 'active_support/core_ext'
+
+Time.zone = 'Asia/Tokyo'
+
+lib_directory_path = File.expand_path('../lib', __dir__)
+$LOAD_PATH.unshift(lib_directory_path)
+
+require 'qiita_trend_stock'
+
+entry_items = ::QiitaTrendStock::EntryItems.new
+entry_items.fetch!
+entry_items.stock!
+
+puts ''
+print 'qiita_user_status => '
+pp entry_items.qiita_user_status
+
+puts ''
+print 'stocked_uuids => '
+pp entry_items.stocked_uuids
+
+puts ''
+p '( ｰ`дｰ´) おｋ'
