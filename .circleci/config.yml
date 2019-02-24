@@ -14,7 +14,7 @@ jobs:
       - restore_cache:
           key: gem-cache-v10-{{ arch }}-{{ checksum "Gemfile.lock" }}
       - run:
-          name: check config
+          name: check bundle config
           command: |
             bundle -v
             bundle config
@@ -46,7 +46,7 @@ jobs:
       - restore_cache:
           key: gem-cache-v10-{{ arch }}-{{ checksum "Gemfile.lock" }}
       - run:
-          name: check config
+          name: check bundle config
           command: |
             bundle -v
             bundle config
@@ -67,7 +67,7 @@ workflows:
       - build
     triggers:
       - schedule:
-          cron: "50 23 * * *"
+          cron: "50 14 * * *"
           filters:
             branches:
               only:
