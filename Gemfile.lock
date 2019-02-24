@@ -47,6 +47,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    rspec_junit_formatter (0.4.1)
+      rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (0.65.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -68,9 +70,10 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.0)
-  qiita (~> 1.0)
-  rspec (~> 3.0)
-  rubocop (~> 0.0)
+  qiita
+  rspec
+  rspec_junit_formatter
+  rubocop
 
 BUNDLED WITH
    1.17.3

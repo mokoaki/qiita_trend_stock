@@ -31,7 +31,11 @@ jobs:
       - run:
           name: Test RSpec
           command: bundle exec rspec
-  build:
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+build:
     working_directory: ~/qiita_trend_stock
     docker:
       - image: circleci/ruby:2.5.3

@@ -3,9 +3,10 @@
 source 'https://rubygems.org'
 
 gem 'bundler', '~> 1.0'
-gem 'qiita', '~> 1.0'
+gem 'qiita'
 
 group :development do
-  gem 'rspec', '~> 3.0'
-  gem 'rubocop', '~> 0.0'
+  gem 'rspec'
+  gem 'rspec_junit_formatter'
+  gem 'rubocop'
 end

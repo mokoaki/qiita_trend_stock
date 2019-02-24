@@ -1,3 +1,7 @@
---format documentation
+#--format documentation
+--format RspecJunitFormatter
+--out ./test-results/rspec.xml
+--format progress
 --color
 --require spec_helper
+--profile 2
