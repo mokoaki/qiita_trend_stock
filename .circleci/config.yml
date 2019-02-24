@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: gem-cache-v10-{{ arch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
       - run:
           name: check bundle config
           command: |
@@ -20,9 +20,9 @@ jobs:
             bundle config
       - run:
           name: bundle install
-          command: bundle check || (gem install bundler -v '~> 1.0' ; bundle install)
+          command: gem install bundler -v '~> 1.0' ; bundle install
       - save_cache:
-          key: gem-cache-v10-{{ arch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
@@ -34,8 +34,8 @@ jobs:
       - store_test_results:
           path: test-results
       - store_artifacts:
-          path: test-results
-build:
+          path: coverage
+  build:
     working_directory: ~/qiita_trend_stock
     docker:
       - image: circleci/ruby:2.5.3
@@ -48,7 +48,7 @@ build:
     steps:
       - checkout
       - restore_cache:
-          key: gem-cache-v10-{{ arch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
       - run:
           name: check bundle config
           command: |
@@ -56,11 +56,10 @@ build:
             bundle config
       - run:
           name: bundle install
-          command: bundle check || (gem install bundler -v '~> 1.0' ; bundle install)
+          command: gem install bundler -v '~> 1.0' ; bundle install
       - run:
           name: qiita trend stock
           command: bin/qiita_trend_stock
-
 workflows:
   version: 2
   commit-workflow:

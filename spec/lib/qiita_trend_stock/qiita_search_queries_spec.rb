@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'qiita_search_queries'
 
 module QiitaTrendStock
   RSpec.describe EntryItems do
