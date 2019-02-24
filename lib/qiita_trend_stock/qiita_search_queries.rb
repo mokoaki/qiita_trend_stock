@@ -17,7 +17,7 @@ module QiitaTrendStock
       # rubocop:disable Layout/SpaceInsideParens
       def target_queries
         result_queries = []
-        result_queries << build_query(                    stocks_gt: 50)
+        result_queries << build_query(                    stocks_gt: 100)
         result_queries << build_query(tag: 'VSCode',      stocks_gt: 10)
         result_queries << build_query(tag: 'React',       stocks_gt: 10)
         result_queries << build_query(tag: 'TypeScript',  stocks_gt: 10)

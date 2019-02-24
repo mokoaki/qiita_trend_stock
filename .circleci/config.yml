@@ -4,31 +4,55 @@ jobs:
     working_directory: ~/qiita_trend_stock
     docker:
       - image: circleci/ruby:2.5.3
+        environment:
+          BUNDLE_CLEAN: true
+          BUNDLE_JOBS: 3
+          BUNDLE_PATH: vendor/bundle
+          BUNDLE_RETRY: 3
     steps:
       - checkout
       - restore_cache:
-          key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-v10-{{ arch }}-{{ checksum "Gemfile.lock" }}
       - run:
-          name: bundle install && bundle clean
-          command: gem update --system ; bundle install --path vendor/bundle
+          name: check config
+          command: |
+            bundle -v
+            bundle config
+      - run:
+          name: bundle install
+          command: bundle check || (gem install bundler -v '~> 1.0' ; bundle install)
       - save_cache:
-          key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-v10-{{ arch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
-          name: test qiita trend stock
+          name: Test RuboCop
+          command: bundle exec rubocop
+      - run:
+          name: Test RSpec
           command: bundle exec rspec
   build:
     working_directory: ~/qiita_trend_stock
     docker:
       - image: circleci/ruby:2.5.3
+        environment:
+          BUNDLE_CLEAN: true
+          BUNDLE_JOBS: 3
+          BUNDLE_PATH: vendor/bundle
+          BUNDLE_RETRY: 3
+          BUNDLE_WITHOUT: development
     steps:
       - checkout
       - restore_cache:
-          key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-v10-{{ arch }}-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: check config
+          command: |
+            bundle -v
+            bundle config
       - run:
           name: bundle install
-          command: gem update --system ; bundle install --path vendor/bundle --without development
+          command: bundle check || (gem install bundler -v '~> 1.0' ; bundle install)
       - run:
           name: qiita trend stock
           command: bin/qiita_trend_stock

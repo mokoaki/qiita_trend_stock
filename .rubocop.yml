@@ -1,9 +1,10 @@
 AllCops:
   TargetRubyVersion: 2.5
 
-# チェック対象外
-AllCops:
+  # チェック対象外
   Exclude:
+    - bin/*
+    - db/schema.rb
     - vendor/**/*
 
 # コメントはASCII文字で記述 => disable
@@ -16,6 +17,10 @@ Style/WordArray:
 
 # [:a, :b, :c] は %i表記にて記述 => disable
 Style/SymbolArray:
+  Enabled: false
+
+# 空メソッドは1行で記述する => disable
+Style/EmptyMethod:
   Enabled: false
 
 Style/Documentation:

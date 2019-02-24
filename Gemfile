@@ -2,8 +2,10 @@
 
 source 'https://rubygems.org'
 
-gem 'qiita', '1.3.5'
+gem 'bundler', '~> 1.0'
+gem 'qiita', '~> 1.0'
 
 group :development do
-  gem 'rspec', '3.8.0'
+  gem 'rspec', '~> 3.0'
+  gem 'rubocop', '~> 0.0'
 end
