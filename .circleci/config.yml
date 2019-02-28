@@ -1,16 +1,18 @@
-version: 2.0
-jobs:
-  test:
+version: 2.1
+executors:
+  default:
     working_directory: ~/qiita_trend_stock
     docker:
       - image: circleci/ruby:2.5.3
         environment:
-          BUNDLE_CLEAN: true
           BUNDLE_JOBS: 4
           BUNDLE_PATH: vendor/bundle
           BUNDLE_RETRY: 3
+
+commands:
+  setup_bundle:
+    description: "Setup bundle with cache"
     steps:
-      - checkout
       - restore_cache:
           key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
       - run:
@@ -20,11 +22,28 @@ jobs:
             bundle config
       - run:
           name: bundle install
-          command: gem install bundler -v '~> 1.0' ; bundle install
+          command: |
+            gem install bundler -v '~> 1.0'
+            bundle install
+
+  hoge_bundle:
+    description: "Setup bundle with cache"
+    steps:
       - save_cache:
           key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+
+jobs:
+  test:
+    executor: default
+    environment:
+      BUNDLE_WITHOUT: ""
+      BUNDLE_CLEAN: true
+    steps:
+      - checkout
+      - setup_bundle
+      - hoge_bundle
       - run:
           name: Test RuboCop
           command: bundle exec rubocop
@@ -35,31 +54,19 @@ jobs:
           path: test-results
       - store_artifacts:
           path: coverage
+
   build:
-    working_directory: ~/qiita_trend_stock
-    docker:
-      - image: circleci/ruby:2.5.3
-        environment:
-          BUNDLE_CLEAN: false
-          BUNDLE_JOBS: 4
-          BUNDLE_PATH: vendor/bundle
-          BUNDLE_RETRY: 3
-          BUNDLE_WITHOUT: development
+    executor: default
+    environment:
+      BUNDLE_WITHOUT: development
+      BUNDLE_CLEAN: false
     steps:
       - checkout
-      - restore_cache:
-          key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
-      - run:
-          name: check bundle config
-          command: |
-            bundle -v
-            bundle config
-      - run:
-          name: bundle install
-          command: gem install bundler -v '~> 1.0' ; bundle install
+      - setup_bundle
       - run:
           name: qiita trend stock
           command: bin/qiita_trend_stock
+
 workflows:
   version: 2
   commit-workflow:
