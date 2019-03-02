@@ -16,7 +16,7 @@ commands:
       - restore_cache:
           key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
       - run:
-          name: check bundle config
+          name: Check bundle config
           command: |
             bundle -v
             bundle config
@@ -26,7 +26,7 @@ commands:
             gem install bundler -v '~> 1.0'
             bundle install
 
-  hoge_bundle:
+  save_bundle_cache:
     description: "Setup bundle with cache"
     steps:
       - save_cache:
@@ -43,7 +43,7 @@ jobs:
     steps:
       - checkout
       - setup_bundle
-      - hoge_bundle
+      - save_bundle_cache
       - run:
           name: Test RuboCop
           command: bundle exec rubocop
