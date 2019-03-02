@@ -15,7 +15,7 @@ Time.zone = 'Asia/Tokyo'
 
 require_relative '../lib/qiita_trend_stock'
 
-entry_items = ::QiitaTrendStock::EntryItems.new
+entry_items = ::QiitaTrendStock::QiitaEntries.new
 entry_items.fetch!
 entry_items.stock!
 

@@ -4,7 +4,7 @@
 module QiitaTrendStock
   # uuidを保持し stockが可能
   # それだけのクラス このクラスがqiitaの1記事を現している
-  class EntryItem
+  class QiitaEntry
     attr_accessor :uuid
 
     def initialize(uuid)

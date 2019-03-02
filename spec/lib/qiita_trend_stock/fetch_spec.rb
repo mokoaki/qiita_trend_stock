@@ -3,6 +3,6 @@
 # require 'spec_helper'
 
 # module QiitaTrendStock
-#   RSpec.describe EntryItems do
+#   RSpec.describe QiitaEntries do
 #   end
 # end

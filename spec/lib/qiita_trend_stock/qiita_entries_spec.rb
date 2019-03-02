@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require_relative '../../../lib/qiita_trend_stock/qiita_entries'
 
 module QiitaTrendStock
-  RSpec.describe EntryItems do
-    let(:entry_items) { EntryItems.new }
+  RSpec.describe QiitaEntries do
+    let(:entry_items) { QiitaEntries.new }
 
     context '#initialize' do
       it 'コンストラクタは[entry_items,stocked_items]を空配列で初期化する' do

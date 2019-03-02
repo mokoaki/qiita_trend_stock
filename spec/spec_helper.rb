@@ -21,7 +21,7 @@ SimpleCov.start do
 end
 # end
 
-require_relative '../lib/qiita_trend_stock'
+# require_relative '../lib/qiita_trend_stock'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

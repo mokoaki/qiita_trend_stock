@@ -3,7 +3,7 @@
 # 全ての機能を含む
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
-  class EntryItems
+  class QiitaEntries
     attr_accessor :entry_items
     attr_accessor :stocked_items
 

@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require_relative '../../../lib/qiita_trend_stock/qiita_search_queries'
 
 module QiitaTrendStock
-  RSpec.describe EntryItems do
-    let(:entry_items) { EntryItems.new }
+  RSpec.describe QiitaEntries do
+    let(:entry_items) { QiitaEntries.new }
 
     # qiitaにリクエストする文字列なんで適当
     # ログを見ればおかしい事はすぐ判ると思うからテストは適当

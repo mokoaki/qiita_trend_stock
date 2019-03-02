@@ -5,7 +5,7 @@ require_relative 'entry_items'
 # 全ての機能を含む
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
-  class EntryItems
+  class QiitaEntries
     def fetch!
       self.entry_items = FetchImplement.fetch_entry_items(qiita_search_queries)
     end
