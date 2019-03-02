@@ -8,10 +8,12 @@ require 'active_support/core_ext'
 
 Time.zone = 'Asia/Tokyo'
 
-lib_directory_path = File.expand_path('../lib', __dir__)
-$LOAD_PATH.unshift(lib_directory_path)
+# lib_directory_path = File.expand_path('../lib', __dir__)
+# $LOAD_PATH.unshift(lib_directory_path)
 
-require 'qiita_trend_stock'
+# require 'qiita_trend_stock'
+
+require_relative '../lib/qiita_trend_stock'
 
 entry_items = ::QiitaTrendStock::EntryItems.new
 entry_items.fetch!

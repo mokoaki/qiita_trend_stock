@@ -7,8 +7,8 @@ require 'active_support/core_ext'
 
 Time.zone = 'Asia/Tokyo'
 
-directory_path = File.expand_path('../lib', __dir__)
-$LOAD_PATH.unshift(directory_path)
+# directory_path = File.expand_path('../lib', __dir__)
+# $LOAD_PATH.unshift(directory_path)
 
 # if ENV['CIRCLE_WORKING_DIRECTORY'].present?
 require 'simplecov'
@@ -21,7 +21,7 @@ SimpleCov.start do
 end
 # end
 
-require 'qiita_trend_stock'
+require_relative '../lib/qiita_trend_stock'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

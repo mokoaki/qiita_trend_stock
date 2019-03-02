@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'entry_items'
+require_relative 'entry_items'
 
 # 全ての機能を含む
 module QiitaTrendStock
