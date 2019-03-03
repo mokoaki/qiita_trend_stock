@@ -7,11 +7,51 @@ module QiitaTrendStock
   # Itemsはこのクラスで表現される
   class QiitaArticles
     def stock!
-      @stocked_articles = @fetched_articles.map(&:stock!).compact
+      @stocked_articles = EncapsulationStock.stock!(@fetched_articles)
     end
 
     def stocked_uuids
-      @stocked_articles.map(&:uuid)
+      EncapsulationStockedUuids.stocked_uuids(@stocked_articles)
+    end
+
+    # 上記の実装
+    module EncapsulationStock
+      module_function
+
+      def stock!(target_articles)
+        return [] if target_articles.blank?
+
+        stocked_articles = stok_fetched_articles(target_articles)
+        compact_articles(stocked_articles)
+      end
+
+      def stok_fetched_articles(target_articles)
+        target_articles.map(&:stock!)
+      end
+
+      def compact_articles(target_articles)
+        target_articles.compact
+      end
+    end
+
+    # 上記の実装
+    module EncapsulationStockedUuids
+      module_function
+
+      def stocked_uuids(target_articles)
+        return [] if target_articles.blank?
+
+        stocked_item_uuids = stocked_item_uuids(target_articles)
+        uniq_uuids(stocked_item_uuids)
+      end
+
+      def stocked_item_uuids(target_articles)
+        target_articles.map(&:uuid)
+      end
+
+      def uniq_uuids(target_uuids)
+        target_uuids.uniq
+      end
     end
   end
 end
