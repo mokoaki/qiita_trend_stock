@@ -21,11 +21,11 @@ module QiitaTrendStock
       def stock!(target_articles)
         return [] if target_articles.blank?
 
-        stocked_articles = stok_fetched_articles(target_articles)
+        stocked_articles = articles_stock!(target_articles)
         compact_articles(stocked_articles)
       end
 
-      def stok_fetched_articles(target_articles)
+      def articles_stock!(target_articles)
         target_articles.map(&:stock!)
       end
 

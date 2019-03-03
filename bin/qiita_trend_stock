@@ -25,7 +25,7 @@ articles.stock!
 
 puts ''
 print 'user_status => '
-pp ::QiitaTrendStock::Client.instance.user_status
+pp ::QiitaTrendStock::Client.user_status
 
 puts ''
 print 'stocked_uuids => '

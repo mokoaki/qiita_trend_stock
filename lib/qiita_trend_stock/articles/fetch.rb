@@ -27,7 +27,7 @@ module QiitaTrendStock
 
         # 読んでも10ページまで
         (1..10).each do |page|
-          query_responce = articles_page_query(page, query)
+          query_responce = Client.query_articles(page, query)
           responce_articles = query_responce.body
           articles = build_articles(responce_articles)
           result_articles.concat(articles)
@@ -41,10 +41,6 @@ module QiitaTrendStock
         result_articles
       end
       # rubocop:enable Metrics/MethodLength
-
-      def articles_page_query(page, query)
-        Client.instance.client.list_items(page: page, per_page: 100, query: query)
-      end
 
       def build_articles(articles)
         articles.map do |article|
