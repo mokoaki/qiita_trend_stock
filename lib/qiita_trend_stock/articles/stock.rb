@@ -11,45 +11,45 @@ module QiitaTrendStock
     def stocked_uuids
       EncapsulationStockedUuids.stocked_uuids(@stocked_articles)
     end
+  end
 
-    # 上記の実装
-    module EncapsulationStock
-      module_function
+  # 上記の実装
+  module EncapsulationStock
+    module_function
 
-      def stock!(target_articles)
-        return [] if target_articles.blank?
+    def stock!(target_articles)
+      return [] if target_articles.blank?
 
-        stocked_articles = articles_stock!(target_articles)
-        compact_articles(stocked_articles)
-      end
-
-      def articles_stock!(target_articles)
-        target_articles.map(&:stock!)
-      end
-
-      def compact_articles(target_articles)
-        target_articles.compact
-      end
+      stocked_articles = articles_stock!(target_articles)
+      compact_articles(stocked_articles)
     end
 
-    # 上記の実装
-    module EncapsulationStockedUuids
-      module_function
+    def articles_stock!(target_articles)
+      target_articles.map(&:stock!)
+    end
 
-      def stocked_uuids(target_articles)
-        return [] if target_articles.blank?
+    def compact_articles(target_articles)
+      target_articles.compact
+    end
+  end
 
-        stocked_item_uuids = stocked_item_uuids(target_articles)
-        uniq_uuids(stocked_item_uuids)
-      end
+  # 上記の実装
+  module EncapsulationStockedUuids
+    module_function
 
-      def stocked_item_uuids(target_articles)
-        target_articles.map(&:uuid)
-      end
+    def stocked_uuids(target_articles)
+      return [] if target_articles.blank?
 
-      def uniq_uuids(target_uuids)
-        target_uuids.uniq
-      end
+      stocked_item_uuids = stocked_item_uuids(target_articles)
+      uniq_uuids(stocked_item_uuids)
+    end
+
+    def stocked_item_uuids(target_articles)
+      target_articles.map(&:uuid)
+    end
+
+    def uniq_uuids(target_uuids)
+      target_uuids.uniq
     end
   end
 end
