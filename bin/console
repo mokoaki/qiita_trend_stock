@@ -13,6 +13,10 @@ Time.zone = 'Asia/Tokyo'
 
 # require 'qiita_trend_stock'
 
+if ENV['QIITA_ACCESS_TOKEN'].blank?
+  raise ArgumentError, "Not found ENV['QIITA_ACCESS_TOKEN']"
+end
+
 require_relative '../lib/qiita_trend_stock'
 
 require 'irb'
