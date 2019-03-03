@@ -4,7 +4,7 @@
 module QiitaTrendStock
   # uuidを保持し stockが可能
   # それだけのクラス このクラスがqiitaの1記事を現している
-  class QiitaArticle
+  class Article
     attr_accessor :uuid
 
     def initialize(uuid)
@@ -14,14 +14,14 @@ module QiitaTrendStock
     end
 
     def stock!
-      result = qiita_client.stock_item(uuid).body
+      result = client.stock_item(uuid).body
       # stock成功時は body == nil らしい
       result.nil? ? self : nil
     end
 
     private
 
-    def qiita_client
+    def client
       QIITA_CLIENT
     end
   end

@@ -3,17 +3,17 @@
 # 全ての機能を含む
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
-  class QiitaArticles
+  class Articles
     def fetch!
-      @fetched_articles = FetchImplement.fetch_articles(qiita_search_queries)
+      @fetched_articles = FetchImplement.fetch_articles(search_queries)
     end
 
     # fetch系の実装
     module FetchImplement
       module_function
 
-      def fetch_articles(qiita_search_queries)
-        articles = qiita_search_queries.flat_map do |query|
+      def fetch_articles(search_queries)
+        articles = search_queries.flat_map do |query|
           articles_query(query)
         end
 
@@ -50,7 +50,7 @@ module QiitaTrendStock
         articles.map do |article|
           # 必要なものはエントリーのユニークIDのみ
           uuid = article['id']
-          QiitaArticle.new(uuid)
+          Article.new(uuid)
         end
       end
     end

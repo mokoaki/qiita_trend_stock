@@ -3,8 +3,8 @@
 # 全ての機能を含む
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
-  class QiitaArticles
-    def qiita_user_status
+  class Articles
+    def user_status
       auth_headers = QIITA_CLIENT.get_authenticated_user.headers
       allow_keys = %w[Rate-Limit Rate-Remaining Rate-Reset X-Runtime Date]
       result_headers = auth_headers.slice(*allow_keys)
