@@ -3,10 +3,10 @@
 # 全ての機能を含む
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
-  class QiitaEntries
+  class QiitaArticles
     def initialize
-      @entry_items = []
-      @stocked_items = []
+      @fetched_articles = []
+      @stocked_articles = []
     end
   end
 end

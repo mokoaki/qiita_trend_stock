@@ -15,17 +15,17 @@ Time.zone = 'Asia/Tokyo'
 
 require_relative '../lib/qiita_trend_stock'
 
-entry_items = ::QiitaTrendStock::QiitaEntries.new
-entry_items.fetch!
-entry_items.stock!
+qiita_articles = ::QiitaTrendStock::QiitaArticles.new
+qiita_articles.fetch!
+qiita_articles.stock!
 
 puts ''
 print 'qiita_user_status => '
-pp entry_items.qiita_user_status
+pp qiita_articles.qiita_user_status
 
 puts ''
 print 'stocked_uuids => '
-pp entry_items.stocked_uuids
+pp qiita_articles.stocked_uuids
 
 puts ''
 p '( ｰ`дｰ´) おｋ'

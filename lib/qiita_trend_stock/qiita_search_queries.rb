@@ -3,7 +3,7 @@
 # 全ての機能を含む
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
-  class QiitaEntries
+  class QiitaArticles
     def qiita_search_queries
       QiitaSearchQueriesImplement.target_queries
     end

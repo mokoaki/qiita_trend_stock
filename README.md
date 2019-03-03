@@ -18,8 +18,8 @@ circleci(cli): https://circleci.com/docs/2.0/local-cli/
 
 ```sh
 $ circleci update
-$ circleci config process .circleci/config.yml > .circleci/config-2.0.yml
-$ circleci local execute -c .circleci/config-2.0.yml -env QIITA_ACCESS_TOKEN=test_token
+$ circleci config process .circleci/config.yml > tmp/circleci-config-2.0.yml
+$ circleci local execute -c tmp/circleci-config-2.0.yml -env QIITA_ACCESS_TOKEN=test_token
 ```
 
 ### test

@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require_relative './qiita_entry'
+# require_relative './qiita_article'
 
 # 全ての機能を含む
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
-  class QiitaEntries
+  class QiitaArticles
     def stock!
-      @stocked_items = @entry_items.map(&:stock!).compact
+      @stocked_articles = @fetched_articles.map(&:stock!).compact
     end
 
     def stocked_uuids
-      @stocked_items.map(&:uuid)
+      @stocked_articles.map(&:uuid)
     end
   end
 end

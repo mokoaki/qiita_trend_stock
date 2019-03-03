@@ -3,7 +3,8 @@
 # lib_directory_path = File.expand_path('./qiita_trend_stock', __dir__)
 # $LOAD_PATH.unshift(lib_directory_path)
 
-require_relative 'qiita_trend_stock/entry_item'
+require_relative 'qiita_trend_stock/qiita_article'
+require_relative 'qiita_trend_stock/qiita_articles'
 require_relative 'qiita_trend_stock/qiita_search_queries'
 require_relative 'qiita_trend_stock/qiita_client'
 require_relative 'qiita_trend_stock/qiita_user_status'
