@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require_relative '../../../lib/qiita_trend_stock/search_queries'
+require_relative '../../../../lib/qiita_trend_stock/articles/search_queries'
 
 module QiitaTrendStock
   RSpec.describe SearchQueries do

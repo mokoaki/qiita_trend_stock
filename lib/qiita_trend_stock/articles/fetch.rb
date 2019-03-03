@@ -43,7 +43,7 @@ module QiitaTrendStock
       # rubocop:enable Metrics/MethodLength
 
       def articles_page_query(page, query)
-        Client.list_items(page: page, per_page: 100, query: query)
+        Client.instance.client.list_items(page: page, per_page: 100, query: query)
       end
 
       def build_articles(articles)

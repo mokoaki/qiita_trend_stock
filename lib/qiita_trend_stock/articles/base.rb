@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
-# 全ての機能を含む
+require_relative './search_queries'
+require_relative './fetch'
+require_relative './stock'
+
+# namespase
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
   class Articles
     include SearchQueries
-    include UserStatus
     include Fetch
     include Stock
 

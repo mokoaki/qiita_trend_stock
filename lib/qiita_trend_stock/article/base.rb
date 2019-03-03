@@ -14,7 +14,7 @@ module QiitaTrendStock
     end
 
     def stock!
-      result = Client.stock_item(uuid).body
+      result = Client.instance.client.stock_item(uuid).body
       # stock成功時は body == nil らしい
       result.nil? ? self : nil
     end

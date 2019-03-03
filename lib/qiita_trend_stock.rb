@@ -5,12 +5,6 @@
 
 # このファイルをrequireすると全てが出来上がる、という算段
 
-require_relative 'qiita_trend_stock/client'
-
-require_relative 'qiita_trend_stock/search_queries'
-require_relative 'qiita_trend_stock/user_status'
-require_relative 'qiita_trend_stock/fetch'
-require_relative 'qiita_trend_stock/stock'
-
-require_relative 'qiita_trend_stock/article'
-require_relative 'qiita_trend_stock/articles'
+require_relative './qiita_trend_stock/client/base'
+require_relative './qiita_trend_stock/article/base'
+require_relative './qiita_trend_stock/articles/base'

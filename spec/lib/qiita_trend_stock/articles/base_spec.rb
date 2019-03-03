@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # require 'spec_helper'
-# require_relative '../../../lib/qiita_trend_stock/articles'
+# require_relative '../../../../lib/qiita_trend_stock/articles/base'
 
 # module QiitaTrendStock
 #   RSpec.describe Articles do
