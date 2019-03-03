@@ -7,7 +7,7 @@ module QiitaTrendStock
   # Itemsはこのクラスで表現される
   class QiitaEntries
     def fetch!
-      self.entry_items = FetchImplement.fetch_entry_items(qiita_search_queries)
+      @entry_items = FetchImplement.fetch_entry_items(qiita_search_queries)
     end
 
     # fetch系の実装

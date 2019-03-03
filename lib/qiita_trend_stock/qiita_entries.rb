@@ -4,12 +4,9 @@
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
   class QiitaEntries
-    attr_accessor :entry_items
-    attr_accessor :stocked_items
-
     def initialize
-      self.entry_items = []
-      self.stocked_items = []
+      @entry_items = []
+      @stocked_items = []
     end
   end
 end

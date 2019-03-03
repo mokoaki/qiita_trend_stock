@@ -10,8 +10,8 @@ module QiitaTrendStock
 
     context '#initialize' do
       it 'コンストラクタは引数でuuidを初期化する' do
-        entry_item = QiitaEntry.new(test_uuid1)
-        expect(entry_item.uuid).to eq(test_uuid1)
+        qiita_entry = QiitaEntry.new(test_uuid1)
+        expect(qiita_entry.uuid).to eq(test_uuid1)
       end
 
       it '引数blankは許さない 絶対にだ' do
@@ -23,9 +23,9 @@ module QiitaTrendStock
 
     context '.attr_accessor :uuid' do
       it 'uuidが読み書きできる' do
-        entry_item = QiitaEntry.new(test_uuid1)
-        entry_item.uuid = test_uuid2
-        expect(entry_item.uuid).to eq(test_uuid2)
+        qiita_entry = QiitaEntry.new(test_uuid1)
+        qiita_entry.uuid = test_uuid2
+        expect(qiita_entry.uuid).to eq(test_uuid2)
       end
     end
 
