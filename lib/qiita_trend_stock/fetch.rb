@@ -3,7 +3,7 @@
 # 全ての機能を含む
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
-  class Articles
+  module Fetch
     def fetch!
       @fetched_articles = FetchImplement.fetch_articles(search_queries)
     end
@@ -43,7 +43,7 @@ module QiitaTrendStock
       # rubocop:enable Metrics/MethodLength
 
       def articles_page_query(page, query)
-        QIITA_CLIENT.list_items(page: page, per_page: 100, query: query)
+        QiitaClient.list_items(page: page, per_page: 100, query: query)
       end
 
       def build_articles(articles)

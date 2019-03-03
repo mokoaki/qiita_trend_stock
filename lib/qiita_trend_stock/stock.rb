@@ -5,7 +5,7 @@
 # 全ての機能を含む
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
-  class Articles
+  module Stock
     def stock!
       @stocked_articles = EncapsulationStock.stock!(@fetched_articles)
     end

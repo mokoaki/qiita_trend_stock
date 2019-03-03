@@ -37,7 +37,7 @@ module QiitaTrendStock
 
       it '#stock!を呼び出すと#clientを使い、その返答の#bodyメソッドを呼び出す 戻り値は自分自身' do
         article = Article.new(test_uuid1)
-        allow(article).to receive(:client).and_return(client_dummy)
+        stub_const('QiitaClient', client_dummy)
         allow(client_dummy).to receive(:stock_item).with(test_uuid1).and_return(responce_dummy)
         allow(responce_dummy).to receive(:body).and_return(nil)
         expect(article.stock!).to eq(article)
