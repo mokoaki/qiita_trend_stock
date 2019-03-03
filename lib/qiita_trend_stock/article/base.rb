@@ -5,12 +5,12 @@ module QiitaTrendStock
   # uuidを保持し stockが可能
   # それだけのクラス このクラスがqiitaの1記事を現している
   class Article
-    attr_accessor :uuid
+    attr_reader :uuid
 
     def initialize(uuid)
       raise ArgumentError if uuid.blank?
 
-      self.uuid = uuid
+      @uuid = uuid
     end
 
     def stock!
