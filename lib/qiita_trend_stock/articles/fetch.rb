@@ -5,12 +5,12 @@ module QiitaTrendStock
   # Itemsはこのクラスで表現される
   module Fetch
     def fetch!
-      @fetched_articles = FetchImplement.fetch_articles(search_queries)
+      @fetched_articles = EncapsulationFetch.fetch_articles(search_queries)
     end
   end
 
   # fetch系の実装
-  module FetchImplement
+  module EncapsulationFetch
     module_function
 
     def fetch_articles(search_queries)

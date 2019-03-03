@@ -5,12 +5,12 @@ module QiitaTrendStock
   # Itemsはこのクラスで表現される
   module SearchQueries
     def search_queries
-      QiitaSearchQueriesImplement.target_queries
+      EncapsulationSearchQueries.target_queries
     end
   end
 
   # search_queries関係はこの中にカプセル化してある
-  module QiitaSearchQueriesImplement
+  module EncapsulationSearchQueries
     module_function
 
     # rubocop:disable Metrics/AbcSize

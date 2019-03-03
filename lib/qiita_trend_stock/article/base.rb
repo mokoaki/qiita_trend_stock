@@ -13,6 +13,8 @@ module QiitaTrendStock
       @uuid = uuid
     end
 
+    # TODO
+    # 実装定数を参照しているのはどうなんだ？とは思う
     def stock!
       result = QiitaClient.stock_item(uuid)
       result ? self : nil
