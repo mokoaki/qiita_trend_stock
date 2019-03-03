@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# require_relative './article'
-
 # 全ての機能を含む
 module QiitaTrendStock
   # Itemsはこのクラスで表現される

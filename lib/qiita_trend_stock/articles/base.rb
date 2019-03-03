@@ -3,6 +3,7 @@
 require_relative './search_queries'
 require_relative './fetch'
 require_relative './stock'
+require_relative './user_status'
 
 # namespase
 module QiitaTrendStock
@@ -11,6 +12,7 @@ module QiitaTrendStock
     include SearchQueries
     include Fetch
     include Stock
+    include UserStatus
 
     def initialize
       @fetched_articles = []

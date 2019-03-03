@@ -3,5 +3,5 @@
 # namespace
 module QiitaTrendStock
   class QiitaTrendStockError < StandardError; end
-  class QiitaTrendStockClientImpleError < QiitaTrendStockError; end
+  class ClientAbstractMethodError < QiitaTrendStockError; end
 end

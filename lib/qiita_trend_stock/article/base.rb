@@ -14,7 +14,7 @@ module QiitaTrendStock
     end
 
     def stock!
-      result = Client.stock_item(uuid)
+      result = QiitaClient.stock_item(uuid)
       result ? self : nil
     end
   end
