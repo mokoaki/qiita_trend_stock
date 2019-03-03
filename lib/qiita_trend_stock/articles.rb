@@ -2,8 +2,6 @@
 
 # 全ての機能を含む
 module QiitaTrendStock
-  include Client
-
   # Itemsはこのクラスで表現される
   class Articles
     include SearchQueries
