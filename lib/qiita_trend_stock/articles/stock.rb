@@ -2,7 +2,7 @@
 
 # 全ての機能を含む
 module QiitaTrendStock
-  # Itemsはこのクラスで表現される
+  # Stock関係
   module Stock
     def stock!
       @stocked_articles = EncapsulationStock.stock!(@fetched_articles)
@@ -13,7 +13,7 @@ module QiitaTrendStock
     end
   end
 
-  # 上記の実装
+  # Stock関係の実装
   module EncapsulationStock
     module_function
 

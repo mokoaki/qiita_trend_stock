@@ -2,14 +2,14 @@
 
 # 全ての機能を含む
 module QiitaTrendStock
-  # Itemsはこのクラスで表現される
+  # SearchQuery関係
   module SearchQuery
     def search_queries
       EncapsulationSearchQuery.search_queries
     end
   end
 
-  # search_queries関係はこの中にカプセル化してある
+  # SearchQuery関係の実装
   module EncapsulationSearchQuery
     module_function
 

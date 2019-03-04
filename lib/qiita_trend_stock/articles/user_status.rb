@@ -2,7 +2,7 @@
 
 # 全ての機能を含む
 module QiitaTrendStock
-  # Itemsはこのクラスで表現される
+  # UserStatus関係
   module UserStatus
     def user_status
       QiitaClient.user_status

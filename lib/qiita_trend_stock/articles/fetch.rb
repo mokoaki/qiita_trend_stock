@@ -2,14 +2,14 @@
 
 # 全ての機能を含む
 module QiitaTrendStock
-  # Itemsはこのクラスで表現される
+  # Fetch関係
   module Fetch
     def fetch!
       @fetched_articles = EncapsulationFetch.fetch_articles(search_queries)
     end
   end
 
-  # fetch系の実装
+  # Fetch関係の実装
   module EncapsulationFetch
     module_function
 
