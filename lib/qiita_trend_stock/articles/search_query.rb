@@ -11,55 +11,36 @@ module QiitaTrendStock
 
   # SearchQuery関係の実装
   module EncapsulationSearchQuery
+    CREATED_AGO = 8.days.ago
+
     module_function
 
-    # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength
-    # rubocop:disable Layout/SpaceInsideParens
+    # rubocop:disable Metrics/LineLength
     def search_queries
-      result_queries = []
-      result_queries << build_query(                    stocks_gt: 100)
-      result_queries << build_query(tag: 'VSCode',      stocks_gt: 10)
-      result_queries << build_query(tag: 'React',       stocks_gt: 10)
-      result_queries << build_query(tag: 'TypeScript',  stocks_gt: 10)
-      result_queries << build_query(tag: 'JavaScript',  stocks_gt: 10)
-      result_queries << build_query(tag: 'Git',         stocks_gt: 10)
-      result_queries << build_query(tag: 'nginx',       stocks_gt: 10)
-      result_queries << build_query(tag: 'CentOS',      stocks_gt: 10)
-      result_queries << build_query(tag: 'Chrome',      stocks_gt: 10)
-      result_queries << build_query(tag: 'Rails',       stocks_gt: 10)
-      result_queries << build_query(tag: 'RubyOnRails', stocks_gt: 10)
-      result_queries << build_query(tag: 'GitHub',      stocks_gt: 10)
-      result_queries << build_query(tag: 'Ruby',        stocks_gt: 10)
-      result_queries << build_query(tag: 'Linux',       stocks_gt: 10)
-      result_queries << build_query(tag: 'AWS',         stocks_gt: 10)
-      result_queries << build_query(tag: 'MySQL',       stocks_gt: 10)
-      result_queries << build_query(tag: 'Scala',       stocks_gt: 10)
-      result_queries << build_query(tag: 'Zsh',         stocks_gt: 10)
-      result_queries << build_query(tag: 'Ubuntu',      stocks_gt: 10)
-
-      result_queries
-
-      # [build_query(tag: 'Python', ntag: 'hage', stocks_gt: 210)]
+      [
+        { words: [],              nwords: ['Python'], threshold: 100, created_ago: CREATED_AGO },
+        { words: ['VSCode'],      nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['React'],       nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['TypeScript'],  nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['JavaScript'],  nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['Git'],         nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['nginx'],       nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['CentOS'],      nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['Chrome'],      nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['Rails'],       nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['RubyOnRails'], nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['GitHub'],      nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['Ruby'],        nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['Linux'],       nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['AWS'],         nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['MySQL'],       nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['Scala'],       nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['Zsh'],         nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['Ubuntu'],      nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO }
+      ]
     end
-    # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/MethodLength
-    # rubocop:enable Layout/SpaceInsideParens
-
-    STOCK_KEEP_DEADLINE = 8.days.ago.strftime('%F')
-
-    def build_query(tag: nil, ntag: nil, stocks_gt: nil, created_gt: nil)
-      ntag       ||= 'Python'
-      stocks_gt  ||= 100
-      created_gt ||= STOCK_KEEP_DEADLINE
-
-      result = []
-      result << "tag:#{tag}"   if tag.present?
-      result << "-tag:#{ntag}" if ntag.present?
-      result << "stocks:>#{stocks_gt}"
-      result << "created:>#{created_gt}"
-
-      result.join(' ')
-    end
+    # rubocop:enable Metrics/LineLength
   end
 end

@@ -14,9 +14,11 @@ module QiitaTrendStock
     module_function
 
     def fetch!(search_queries)
-      articles = search_queries.flat_map do |query|
+      results = search_queries.map do |query|
         Interface.fetch!(query)
       end
+
+      articles = results.flat_map(&:itself)
 
       # 異なる条件で同じエントリーが見つかっていたならユニークにする
       articles.uniq(&:uuid)

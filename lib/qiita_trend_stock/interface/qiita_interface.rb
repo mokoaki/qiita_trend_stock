@@ -35,16 +35,17 @@ module QiitaTrendStock
 
       # rubocop:disable Metrics/MethodLength
       def fetch!(query)
+        qiita_query = build_query(query)
         result_articles = []
 
-        # 読んでも10ページまで
-        (1..10).each do |page|
-          query_responce = query(page, query)
+        # 読んでも3ページまで
+        (1..3).each do |page|
+          query_responce = query(page, qiita_query)
           responce_articles = query_responce.body
           articles = build_articles(responce_articles)
           result_articles.concat(articles)
 
-          p "Query [page: #{page}] [#{query}] [count: #{articles.size}]"
+          p "Query [page: #{page}] [#{qiita_query}] [count: #{articles.size}]"
 
           break if responce_articles.empty?
           break if query_responce.next_page_url.blank?
@@ -53,6 +54,23 @@ module QiitaTrendStock
         result_articles
       end
       # rubocop:enable Metrics/MethodLength
+
+      # rubocop:disable Metrics/AbcSize
+      def build_query(query)
+        tags    = query[:words]
+        ntags   = query[:nwords]
+        stocks  = query[:threshold]
+        created = query[:created_ago]
+
+        result = []
+        result << tags.map  { |w| "tag:#{w}" }         if tags.present?
+        result << ntags.map { |w| "-tag:#{w}" }        if ntags.present?
+        result << "stocks:>#{stocks}"                  if stocks.present?
+        result << "created:>#{created.strftime('%F')}" if created.present?
+
+        result.flatten.join(' ')
+      end
+      # rubocop:enable Metrics/AbcSize
 
       def query(page, query)
         EncapsulationConnect.interface.list_items(
