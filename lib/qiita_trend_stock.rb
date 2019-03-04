@@ -6,6 +6,6 @@
 # このファイルをrequireすると全てが出来上がる、という算段
 
 require_relative './errors'
-require_relative './qiita_trend_stock/client/base'
+require_relative './qiita_trend_stock/interface/base'
 require_relative './qiita_trend_stock/article/base'
 require_relative './qiita_trend_stock/articles/base'

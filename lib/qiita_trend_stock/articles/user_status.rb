@@ -5,7 +5,7 @@ module QiitaTrendStock
   # UserStatus関係
   module UserStatus
     def user_status
-      QiitaClient.user_status
+      QiitaInterface.user_status
     end
   end
 end

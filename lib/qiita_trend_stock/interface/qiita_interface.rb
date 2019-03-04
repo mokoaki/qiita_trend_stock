@@ -2,37 +2,37 @@
 
 # namespace
 module QiitaTrendStock
-  # Clientが定義されている事を確定するためだけ
-  class Client
+  # Interfaceが定義されている事を確定するためだけ
+  class Interface
   end
 
   # Qiita-GemのFacadeであり
-  # Clientを使ったtemplate-methodだと思ってるけどあんまり自信ないっす
-  class QiitaClient < Client
+  # Interfaceを使ったtemplate-methodだと思ってるけどあんまり自信ないっす
+  class QiitaInterface < Interface
     class << self
       def query_articles(page, query)
-        EncapsulationQiitaClient.query_articles(page, query)
+        EncapsulationQiitaInterface.query_articles(page, query)
       end
 
       def stock_item(uuid)
-        EncapsulationQiitaClient.stock_item(uuid)
+        EncapsulationQiitaInterface.stock_item(uuid)
       end
 
       def user_status
-        EncapsulationQiitaClient.user_status
+        EncapsulationQiitaInterface.user_status
       end
     end
 
     # ・・の実装
-    module EncapsulationQiitaClient
+    module EncapsulationQiitaInterface
       module_function
 
       def query_articles(page, query)
-        client.list_items(page: page, per_page: 100, query: query)
+        interface.list_items(page: page, per_page: 100, query: query)
       end
 
       def stock_item(uuid)
-        responce_body = client.stock_item(uuid).body
+        responce_body = interface.stock_item(uuid).body
 
         # stock成功時はbodyはnilらしい
         return true if responce_body.nil?
@@ -57,7 +57,7 @@ module QiitaTrendStock
       end
 
       def user_status
-        auth_headers = client.get_authenticated_user.headers
+        auth_headers = interface.get_authenticated_user.headers
         allow_keys = %w[Rate-Limit Rate-Remaining Rate-Reset X-Runtime Date]
         result_headers = auth_headers.slice(*allow_keys)
         jst_string = Time.zone.parse(result_headers['Date']).to_s
@@ -65,8 +65,8 @@ module QiitaTrendStock
         result_headers
       end
 
-      def client
-        @client ||= ::Qiita::Client.new(access_token: access_token)
+      def interface
+        @interface ||= ::Qiita::Client.new(access_token: access_token)
       end
 
       def access_token

@@ -28,7 +28,7 @@ module QiitaTrendStock
 
       # 読んでも10ページまで
       (1..10).each do |page|
-        query_responce = QiitaClient.query_articles(page, query)
+        query_responce = QiitaInterface.query_articles(page, query)
         responce_articles = query_responce.body
         articles = build_articles(responce_articles)
         result_articles.concat(articles)

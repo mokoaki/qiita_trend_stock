@@ -25,19 +25,19 @@ RSpec.describe QiitaTrendStock::Article do
   end
 
   context '#stock!' do
-    let(:test_client) { double(:test_client) }
+    let(:test_interface) { double(:test_interface) }
 
     before(:example) do
-      stub_const('QiitaClient', test_client)
+      stub_const('QiitaInterface', test_interface)
     end
 
-    example 'Client.stock_itemを呼び出し、trueならselfを返す' do
-      allow(test_client).to receive(:stock_item).and_return(true)
+    example 'Interface.stock_itemを呼び出し、trueならselfを返す' do
+      allow(test_interface).to receive(:stock_item).and_return(true)
       expect(article.stock!).to eq(article)
     end
 
-    example 'Client.stock_itemを呼び出し、falseならnilを返す' do
-      allow(test_client).to receive(:stock_item).and_return(false)
+    example 'Interface.stock_itemを呼び出し、falseならnilを返す' do
+      allow(test_interface).to receive(:stock_item).and_return(false)
       expect(article.stock!).to eq(nil)
     end
   end
