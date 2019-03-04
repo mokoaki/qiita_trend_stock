@@ -2,37 +2,81 @@
 
 # namespace
 module QiitaTrendStock
-  # Interfaceが定義されている事を確定するためだけ
-  class Interface
-  end
+  # Qiita接続関係
+  module QiitaInterface
+    def fetch!(query)
+      EncapsulationQiitaInterfaceQueryArticles.fetch!(query)
+    end
 
-  # Qiita-GemのFacadeであり
-  # Interfaceを使ったtemplate-methodだと思ってるけどあんまり自信ないっす
-  class QiitaInterface < Interface
-    class << self
-      def query_articles(page, query)
-        EncapsulationQiitaInterface.query_articles(page, query)
+    def stock_item(uuid)
+      EncapsulationQiitaInterfaceStockItem.stock_item(uuid)
+    end
+
+    def user_status
+      EncapsulationQiitaInterfaceUserStatus.user_status
+    end
+
+    # クライアント取得関係の実装
+    module EncapsulationConnect
+      module_function
+
+      def interface
+        @interface ||= ::Qiita::Client.new(access_token: access_token)
       end
 
-      def stock_item(uuid)
-        EncapsulationQiitaInterface.stock_item(uuid)
-      end
-
-      def user_status
-        EncapsulationQiitaInterface.user_status
+      def access_token
+        ENV['QIITA_ACCESS_TOKEN']
       end
     end
 
-    # ・・の実装
-    module EncapsulationQiitaInterface
+    # 記事取得関係の実装
+    module EncapsulationQiitaInterfaceQueryArticles
       module_function
 
-      def query_articles(page, query)
-        interface.list_items(page: page, per_page: 100, query: query)
+      # rubocop:disable Metrics/MethodLength
+      def fetch!(query)
+        result_articles = []
+
+        # 読んでも10ページまで
+        (1..10).each do |page|
+          query_responce = query(page, query)
+          responce_articles = query_responce.body
+          articles = build_articles(responce_articles)
+          result_articles.concat(articles)
+
+          p "Query [page: #{page}] [#{query}] [count: #{articles.size}]"
+
+          break if responce_articles.empty?
+          break if query_responce.next_page_url.blank?
+        end
+
+        result_articles
+      end
+      # rubocop:enable Metrics/MethodLength
+
+      def query(page, query)
+        EncapsulationConnect.interface.list_items(
+          page: page,
+          per_page: 100,
+          query: query
+        )
       end
 
+      def build_articles(articles)
+        articles.map do |article|
+          # 必要なものはエントリーのユニークIDのみ
+          uuid = article['id']
+          Article.new(uuid)
+        end
+      end
+    end
+
+    # 記事ストック関係の実装
+    module EncapsulationQiitaInterfaceStockItem
+      module_function
+
       def stock_item(uuid)
-        responce_body = interface.stock_item(uuid).body
+        responce_body = EncapsulationConnect.interface.stock_item(uuid).body
 
         # stock成功時はbodyはnilらしい
         return true if responce_body.nil?
@@ -55,22 +99,20 @@ module QiitaTrendStock
       rescue StandardError
         responce_body
       end
+    end
+
+    # ステータス取得関係の実装
+    module EncapsulationQiitaInterfaceUserStatus
+      module_function
 
       def user_status
-        auth_headers = interface.get_authenticated_user.headers
+        auth_headers =
+          EncapsulationConnect.interface.get_authenticated_user.headers
         allow_keys = %w[Rate-Limit Rate-Remaining Rate-Reset X-Runtime Date]
         result_headers = auth_headers.slice(*allow_keys)
-        jst_string = Time.zone.parse(result_headers['Date']).to_s
-        result_headers['DateJST'] = jst_string
+        result_headers['DateJST'] =
+          Time.zone.parse(result_headers['Date']).to_s
         result_headers
-      end
-
-      def interface
-        @interface ||= ::Qiita::Client.new(access_token: access_token)
-      end
-
-      def access_token
-        ENV['QIITA_ACCESS_TOKEN']
       end
     end
   end

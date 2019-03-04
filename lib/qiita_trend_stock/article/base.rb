@@ -16,7 +16,7 @@ module QiitaTrendStock
     # TODO
     # 実装定数を参照しているのはどうなんだ？とは思う
     def stock!
-      result = QiitaInterface.stock_item(uuid)
+      result = Interface.stock_item(uuid)
       result ? self : nil
     end
   end

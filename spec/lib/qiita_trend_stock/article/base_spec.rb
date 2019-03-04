@@ -28,7 +28,7 @@ RSpec.describe QiitaTrendStock::Article do
     let(:test_interface) { double(:test_interface) }
 
     before(:example) do
-      stub_const('QiitaInterface', test_interface)
+      stub_const('Interface', test_interface)
     end
 
     example 'Interface.stock_itemを呼び出し、trueならselfを返す' do
