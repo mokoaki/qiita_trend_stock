@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require_relative '../../../../lib/qiita_trend_stock/articles/search_queries'
+require_relative '../../../../lib/qiita_trend_stock/articles/search_query'
 
 module QiitaTrendStock
-  RSpec.describe SearchQueries do
+  RSpec.describe SearchQuery do
     let(:test_target_class) do
-      Class.new { include SearchQueries }
+      Class.new { include SearchQuery }
     end
 
     # qiitaにリクエストする文字列なんで適当

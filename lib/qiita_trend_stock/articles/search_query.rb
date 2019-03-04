@@ -3,20 +3,20 @@
 # 全ての機能を含む
 module QiitaTrendStock
   # Itemsはこのクラスで表現される
-  module SearchQueries
+  module SearchQuery
     def search_queries
-      EncapsulationSearchQueries.target_queries
+      EncapsulationSearchQuery.search_queries
     end
   end
 
   # search_queries関係はこの中にカプセル化してある
-  module EncapsulationSearchQueries
+  module EncapsulationSearchQuery
     module_function
 
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Layout/SpaceInsideParens
-    def target_queries
+    def search_queries
       result_queries = []
       result_queries << build_query(                    stocks_gt: 100)
       result_queries << build_query(tag: 'VSCode',      stocks_gt: 10)

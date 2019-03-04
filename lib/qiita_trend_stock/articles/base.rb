@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './search_queries'
+require_relative './search_query'
 require_relative './fetch'
 require_relative './stock'
 require_relative './user_status'
@@ -9,7 +9,7 @@ require_relative './user_status'
 module QiitaTrendStock
   # ほぼすべての機能はここに集まってくる
   class Articles
-    include SearchQueries
+    include SearchQuery
     include Fetch
     include Stock
     include UserStatus
