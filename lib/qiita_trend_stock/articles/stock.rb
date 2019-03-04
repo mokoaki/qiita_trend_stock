@@ -18,8 +18,6 @@ module QiitaTrendStock
     module_function
 
     def stock!(target_articles)
-      return [] if target_articles.blank?
-
       stocked_articles = articles_stock!(target_articles)
       compact_articles(stocked_articles)
     end
@@ -38,8 +36,6 @@ module QiitaTrendStock
     module_function
 
     def stocked_uuids(target_articles)
-      return [] if target_articles.blank?
-
       stocked_item_uuids = stocked_item_uuids(target_articles)
       uniq_uuids(stocked_item_uuids)
     end

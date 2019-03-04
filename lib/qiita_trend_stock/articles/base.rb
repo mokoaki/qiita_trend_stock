@@ -7,7 +7,7 @@ require_relative './user_status'
 
 # namespase
 module QiitaTrendStock
-  # Itemsはこのクラスで表現される
+  # ほぼすべての機能はここに集まってくる
   class Articles
     include SearchQueries
     include Fetch
