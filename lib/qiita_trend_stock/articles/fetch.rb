@@ -5,7 +5,7 @@ module QiitaTrendStock
   # Fetch関係
   module Fetch
     def fetch!
-      @fetched_articles = EncapsulationFetch.fetch_articles(search_queries)
+      @fetched_articles = EncapsulationFetch.fetch!(search_queries)
     end
   end
 
@@ -13,7 +13,7 @@ module QiitaTrendStock
   module EncapsulationFetch
     module_function
 
-    def fetch_articles(search_queries)
+    def fetch!(search_queries)
       articles = search_queries.flat_map do |query|
         articles_query(query)
       end
