@@ -2,7 +2,6 @@
 
 source 'https://rubygems.org'
 
-gem 'bundler', '~> 1.0'
 gem 'qiita'
 
 group :development do

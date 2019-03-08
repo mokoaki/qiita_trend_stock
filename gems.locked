@@ -76,7 +76,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.0)
   qiita
   rspec
   rspec_junit_formatter
@@ -84,4 +83,4 @@ DEPENDENCIES
   simplecov
 
 BUNDLED WITH
-   1.17.3
+   2.0.1

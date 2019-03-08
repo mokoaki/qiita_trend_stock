@@ -14,7 +14,7 @@ commands:
     description: "Setup bundle with cache"
     steps:
       - restore_cache:
-          key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-v1-{{ arch }}-{{ checksum "gems.locked" }}
       - run:
           name: Check bundle config
           command: |
@@ -23,14 +23,15 @@ commands:
       - run:
           name: bundle install
           command: |
-            gem install bundler -v '~> 1.0'
+            # gem install bundler -v '~> 1.0'
+            gem install bundler
             bundle install
 
   save_bundle_cache:
     description: "Setup bundle with cache"
     steps:
       - save_cache:
-          key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+          key: gem-cache-v1-{{ arch }}-{{ checksum "gems.locked" }}
           paths:
             - vendor/bundle
 
