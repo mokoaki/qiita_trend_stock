@@ -3,7 +3,7 @@ executors:
   default:
     working_directory: ~/qiita_trend_stock
     docker:
-      - image: circleci/ruby:2.5.3
+      - image: circleci/ruby:2.6.1
         environment:
           BUNDLE_JOBS: 4
           BUNDLE_PATH: vendor/bundle
@@ -14,7 +14,7 @@ commands:
     description: "Setup bundle with cache"
     steps:
       - restore_cache:
-          key: gem-cache-v1-{{ arch }}-{{ checksum "gems.locked" }}
+          key: gem-cache-v3-{{ arch }}-{{ checksum "gems.locked" }}
       - run:
           name: Check bundle config
           command: |
@@ -23,15 +23,14 @@ commands:
       - run:
           name: bundle install
           command: |
-            # gem install bundler -v '~> 1.0'
-            gem install bundler
+            gem update bundler
             bundle install
 
   save_bundle_cache:
     description: "Setup bundle with cache"
     steps:
       - save_cache:
-          key: gem-cache-v1-{{ arch }}-{{ checksum "gems.locked" }}
+          key: gem-cache-v3-{{ arch }}-{{ checksum "gems.locked" }}
           paths:
             - vendor/bundle
 
