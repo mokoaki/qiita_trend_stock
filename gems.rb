@@ -7,6 +7,7 @@ gem 'qiita'
 group :development do
   gem 'pry'
   gem 'pry-byebug'
+  gem 'pry-doc'
   gem 'rspec',                 require: false
   gem 'rspec_junit_formatter', require: false
   gem 'rubocop',               require: false
