@@ -5,8 +5,9 @@ source 'https://rubygems.org'
 gem 'qiita'
 
 group :development do
-  gem 'rspec'
-  gem 'rspec_junit_formatter'
-  gem 'rubocop'
-  gem 'simplecov', require: false
+  gem 'pry'
+  gem 'rspec',                 require: false
+  gem 'rspec_junit_formatter', require: false
+  gem 'rubocop',               require: false
+  gem 'simplecov',             require: false
 end
