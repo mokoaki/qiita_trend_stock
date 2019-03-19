@@ -3,7 +3,7 @@ executors:
   default:
     working_directory: ~/qiita_trend_stock
     docker:
-      - image: circleci/ruby:2.6.1
+      - image: circleci/ruby:2.6.2
         environment:
           BUNDLE_JOBS: 4
           BUNDLE_PATH: vendor/bundle
