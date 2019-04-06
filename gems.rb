@@ -12,6 +12,6 @@ group :development do
   gem 'rspec_junit_formatter', require: false
   gem 'rubocop',               require: false
   gem 'rubocop-performance',   require: false
-  # gem 'rubocop-rspec',         require: false
+  gem 'rubocop-rspec',         require: false
   gem 'simplecov',             require: false
 end

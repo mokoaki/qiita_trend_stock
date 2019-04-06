@@ -9,8 +9,11 @@ RSpec.describe QiitaTrendStock::Articles do
   end
 
   context '#initialize' do
-    it 'コンストラクタは[@fetched_articles,@stocked_articles]を空配列で初期化する' do
+    it 'コンストラクタは@fetched_articlesを空配列で初期化する' do
       expect(articles.instance_variable_get(:@fetched_articles)).to eq([])
+    end
+
+    it 'コンストラクタは@stocked_articlesを空配列で初期化する' do
       expect(articles.instance_variable_get(:@stocked_articles)).to eq([])
     end
   end

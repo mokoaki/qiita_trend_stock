@@ -1,6 +1,6 @@
 require:
   - rubocop-performance
-  # - rubocop-rspec
+  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 2.5
@@ -38,3 +38,6 @@ Metrics/BlockLength:
 Metrics/LineLength:
   Exclude:
     - spec/**/*
+
+RSpec/ContextWording:
+  Enabled: false

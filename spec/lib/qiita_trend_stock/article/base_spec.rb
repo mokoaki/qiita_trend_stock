@@ -27,7 +27,7 @@ RSpec.describe QiitaTrendStock::Article do
   context '#stock!' do
     let(:test_interface) { double(:test_interface) }
 
-    before(:example) do
+    before do
       stub_const('Interface', test_interface)
     end
 
