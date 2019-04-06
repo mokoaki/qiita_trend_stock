@@ -37,7 +37,8 @@ module QiitaTrendStock
         { words: ['MySQL'],       nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
         { words: ['Scala'],       nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
         { words: ['Zsh'],         nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
-        { words: ['Ubuntu'],      nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO }
+        { words: ['Ubuntu'],      nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO },
+        { words: ['kubernetes'],  nwords: ['Python'], threshold: 10,  created_ago: CREATED_AGO }
       ]
     end
     # rubocop:enable Metrics/MethodLength
